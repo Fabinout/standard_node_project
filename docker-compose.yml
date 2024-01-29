@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web:
+    image: standard_node_project
+    build: .
+    user: "node"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8080:8080"
+    command: "http-server --cors -p8080"
+
+  test:
+    image: "standard_node_project"
+    build: .
+    user: "node"
+    volumes:
+      - .:/usr/src/app
+    command: "npm run test:watch"
